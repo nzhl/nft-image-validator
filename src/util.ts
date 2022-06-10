@@ -5,9 +5,19 @@ export const convertToHttpUrl = (url: string) => {
   return url.startsWith("ipfs://") ? url.replace("ipfs://", IPFS_GATEWAY) : url;
 };
 
-export const writeToLog = (info: string) => {
-  fs.appendFile(LOG_FILENAME, info, (error) => {
-    console.error("writing log file error");
+const log = (info: string) => {
+  fs.appendFileSync(LOG_FILENAME, info);
+};
+export const writeToLog = (info: string, error?: unknown) => {
+  log(info);
+  if (error) {
     console.error(error);
-  });
+    if (error instanceof Error) {
+      log(`${error.message}\n`);
+    } else if (typeof error === "string") {
+      log(`${error}\n`);
+    } else {
+      log("Unknown error\n");
+    }
+  }
 };

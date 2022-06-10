@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 export const IPFS_GATEWAY = "https://ipfs.io/ipfs/";
 export const IMAGE_DIRNAME = "collections";
 export const LOG_FILENAME = "main.log";
+export const MAP_FILENAME = "map.json";
 
 export const provider = new ethers.providers.JsonRpcProvider(
   "https://mainnet.infura.io/v3/fb72a26ed5ac44b1b67646db5621e85d"
